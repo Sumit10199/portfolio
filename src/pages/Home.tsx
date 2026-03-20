@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Container } from '../components/Container';
 import { SectionHeading } from '../components/SectionHeading';
 import { Badge } from '../components/Badge';
-import { ProjectGrid } from '../features/projects/ProjectGrid';
+import { ProjectSlider } from '../features/projects/ProjectSlider';
 import { featuredProjects } from '../data/projects';
 import { profile } from '../data/profile';
 import { skills } from '../data/skills';
@@ -67,7 +67,7 @@ export default function Home() {
             subtitle="Production-grade platforms spanning e-commerce, content, and enterprise workflows."
           />
           <div className="mt-10">
-            <ProjectGrid projects={featuredProjects} />
+            <ProjectSlider projects={featuredProjects} />
           </div>
         </Container>
       </section>
@@ -80,10 +80,15 @@ export default function Home() {
             subtitle="A balanced mix of front-end craft, backend architecture, and infrastructure."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {Object.entries(skills).map(([group, items]) => (
-              <div
+            {Object.entries(skills).map(([group, items], index) => (
+              <motion.div
                 key={group}
-                className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-900/60"
+                initial="hidden"
+                whileInView="visible"
+                variants={fadeInUp}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="rounded-3xl border border-slate-200/50 bg-white/60 backdrop-blur-sm p-6 shadow-sm shadow-slate-200/40 dark:border-slate-800/50 dark:bg-slate-900/40"
               >
                 <p className="text-xs uppercase tracking-[0.3em] text-emerald-500">
                   {group.replace(/^[a-z]/, (char) => char.toUpperCase())}
@@ -93,7 +98,7 @@ export default function Home() {
                     <Badge key={item} label={item} />
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </Container>
@@ -107,10 +112,15 @@ export default function Home() {
             subtitle="Hands-on delivery across product teams, agencies, and freelance engagements."
           />
           <div className="mt-10 space-y-6">
-            {experience.map((item) => (
-              <div
+            {experience.map((item, index) => (
+              <motion.div
                 key={`${item.company}-${item.period}`}
-                className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm shadow-slate-200/40 dark:border-slate-800 dark:bg-slate-900/60"
+                initial="hidden"
+                whileInView="visible"
+                variants={fadeInUp}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="rounded-3xl border border-slate-200/50 bg-white/70 backdrop-blur-sm p-6 shadow-sm shadow-slate-200/40 dark:border-slate-800/50 dark:bg-slate-900/50"
               >
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div>
@@ -128,7 +138,7 @@ export default function Home() {
                     <li key={highlight}>{highlight}</li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </Container>

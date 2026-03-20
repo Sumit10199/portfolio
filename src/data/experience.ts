@@ -15,7 +15,7 @@ export const experience = [
     company: 'Esolz Technologies',
     period: 'Mar 2022 - May 2023',
     highlights: [
-      'Built frontend components and application flows in React and React Native (Expo).',
+      'Built frontend components and application flows in React and React Native.',
       'Coordinated with backend teams to integrate APIs, authentication, and data validation.',
       'Contributed to releases, code reviews, and cross-team feature delivery.',
     ],
