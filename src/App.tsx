@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Project: Vite + React + TypeScript — Home Page (single-file demo)
 Features included (opinionated):
@@ -367,3 +368,34 @@ If you prefer @tanstack/react-router, steps:
 
 I left react-router-dom in this demo to keep the example stable and immediately runnable in most dev setups. If you want, I will convert the routing to a TanStack Router implementation and split files into a full project structure.
 */
+=======
+import { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './components/Layout';
+
+const Home = lazy(() => import('./pages/Home'));
+const Projects = lazy(() => import('./pages/Projects'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+export default function App() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-slate-50 text-sm text-slate-500 dark:bg-slate-950 dark:text-slate-300">
+          Loading...
+        </div>
+      }
+    >
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
+}
+>>>>>>> fa19daa8ee9a10492614f8d90a9fc117157eb6ee
